@@ -1,14 +1,14 @@
 # grunt-sass-directory-import
 
-> Include all the _.scss files in a directory by including a dynamically maintained `_*.scss` file.
+> Include all the _.sass files in a directory by including a dynamically maintained `_*.sass` file.
 
-In Sass, it's impossible to important a directory full of `_*.scss` files ([partials](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#partials)) automatically, and [this answer from Stack Overflow](http://stackoverflow.com/a/4779432/399077) probably explains why.
+In Sass, it's impossible to important a directory full of `_*.sass` files ([partials](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#partials)) automatically, and [this answer from Stack Overflow](http://stackoverflow.com/a/4779432/399077) probably explains why.
 
 But for me, source order isn't important: I like to have directories full of partials that should be independent from each other, especially when I'm using a system like SMACSS, where I have things like directories full of modules, mixins, functions, etc.
 
-Using this task, you just add an `_all.scss` to any directory where you'd like to be able to import everything. This task will write all the necessary @imports to it so that when you @import that `_all.scss` partial, you will import all other partials in the directory.
+Using this task, you just add an `_all.sass` to any directory where you'd like to be able to import everything. This task will write all the necessary @imports to it so that when you @import that `_all.sass` partial, you will import all other partials in the directory.
 
-Note: this plugin does not include non-partials, or `*.scss` files not prefixed by an underscore. Those get turned into regular `.css` files, and don't make sense to me as something that should be automatically swept up in other includes.
+Note: this plugin does not include non-partials, or `*.sass` files not prefixed by an underscore. Those get turned into regular `.css` files, and don't make sense to me as something that should be automatically swept up in other includes.
 
 You can read more in [my original blog post](http://nateeagle.com/2013/03/30/import-a-whole-directory-with-sass-using-grunt/).
 
@@ -34,7 +34,7 @@ grunt.loadNpmTasks('grunt-sass-directory-import');
 ### Overview
 In your project's Gruntfile, add a section named `sass_directory_import` to the data object passed into `grunt.initConfig()`.
 
-**Important:** When you execute your tasks, this task needs to be executed *before* your Compass task, or whatever task compiles your `*.scss` files.
+**Important:** When you execute your tasks, this task needs to be executed *before* your Compass task, or whatever task compiles your `*.sass` files.
 
 ```js
 grunt.initConfig({
@@ -44,7 +44,7 @@ grunt.initConfig({
       files: {
         // The file pattern to add @imports to.
         // The name of the file is arbitrary - I like "all".
-        src: ['path/to/scss/files/**/_all.scss']
+        src: ['path/to/sass/files/**/_all.sass']
     },
   },
 })
@@ -69,20 +69,20 @@ Set to true to quiet this.
 ### Usage Examples
 
 #### Default Options
-Find any _all.scss directories in your scss folder and subfolders and add @imports to them to any partials (`_*.scss` files) in that directory.
+Find any _all.sass directories in your sass folder and subfolders and add @imports to them to any partials (`_*.sass` files) in that directory.
 
 ```js
 grunt.initConfig({
   sass_directory_import: {
     files: {
-      src: ['src/scss/**/_all.scss']
+      src: ['src/sass/**/_all.sass']
     },
   },
 })
 ```
 
 #### Custom Options
-Search for files named `_everything.scss` and suppress output to your Grunt process.
+Search for files named `_everything.sass` and suppress output to your Grunt process.
 
 ```js
 grunt.initConfig({
@@ -91,7 +91,7 @@ grunt.initConfig({
       quiet: true,
     },
     files: {
-      src: ['src/scss/**/_everything.scss']
+      src: ['src/sass/**/_everything.sass']
     },
   },
 })
